@@ -15,8 +15,10 @@ spec:
     spec:
       containers:
         - name: api
-          image: kubernetes-gitops-lab:v2 # Docker image
-          imagePullPolicy: IfNotPresent # 노드에 이미지가 있으면 재사용
+          # image: kubernetes-gitops-lab:v2 # Docker image
+          image: ghcr.io/jungjibum/kubernetes-gitops-lab:v2 # Docker image
+          # imagePullPolicy: IfNotPresent # 노드에 이미지가 있으면 재사용
+          imagePullPolicy: Always # 노드에 이미지가 있으면 재사용
           ports:
             - containerPort: 8000
           env:
