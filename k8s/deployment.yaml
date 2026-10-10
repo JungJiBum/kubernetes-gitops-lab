@@ -25,7 +25,7 @@ spec:
             - name: APP_ENV # DEV 환경과 구분용
               value: "deploy"
             - name: APP_VERSION
-              value: "v3"
+              value: "v4"
           readinessProbe: # 요청을 받을 준비가 되었는지 확인하기 위한 Probe
             httpGet:
               path: /health/ready

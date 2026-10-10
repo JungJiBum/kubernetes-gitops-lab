@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitops-api
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/JungJiBum/kubernetes-gitops-lab.git
+    targetRevision: main
+    path: k8s
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: gitops-lab
+
+  syncPolicy: {}
+    # automated:
+    #   prune: true
+    #   selfHeal: true
+
+# repoURL : 감시할 Github 저장소 위치
+# targetRevision : 감시할 브랜치 대상
+# path : 배포 yaml 있는 폴더 위치
+# destination : 배포할 kubernetes 클러스터와 네임 스페이스
+# prune : Git에서 삭제한 리소스를 클러스터에서도 삭제
+# selfHeal : 수동 변경으로 Git 설정과 달라지면 자동 복구
