@@ -1,0 +1,23 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+
+nodes:
+  - role: control-plane
+  - role: worker
+  - role: worker
+
+# kind create cluster --name gitops-lab --config kind-config.yaml
+# 위 명령어로 클러스터를 생성합니다. 클러스터 명은 gitops-lab, 설정파일은 kind-config.yaml을 사용합니다.
+
+# kubectl get nodes -o wide
+# -o는 명령어 옵션이고 wide는 상세 정보 추가 출력 형식
+# NAME                       STATUS   ROLES           AGE   VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                       KERNEL-VERSION             CONTAINER-RUNTIME
+# gitops-lab-control-plane   Ready    control-plane   32s   v1.37.0   172.18.0.2    <none>        Debian GNU/Linux 13 (trixie)   6.12.69-linuxkit (arm64)   containerd://2.3.4
+# gitops-lab-worker          Ready    <none>          18s   v1.37.0   172.18.0.3    <none>        Debian GNU/Linux 13 (trixie)   6.12.69-linuxkit (arm64)   containerd://2.3.4
+# gitops-lab-worker2         Ready    <none>          18s   v1.37.0   172.18.0.4    <none>        Debian GNU/Linux 13 (trixie)   6.12.69-linuxkit (arm64)   containerd://2.3.4
+
+# 출력 옵션
+# kubectl get nodes -o wide   # 상세 정보
+# kubectl get nodes -o yaml   # 전체 리소스 정보를 YAML로 출력
+# kubectl get nodes -o json   # 전체 리소스 정보를 JSON으로 출력
+# kubectl get nodes -o name   # 리소스 이름만 출력

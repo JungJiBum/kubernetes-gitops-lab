@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitops-api
+  namespace: gitops-lab
+spec:
+  replicas: 1 # Pod 개수만큼 실행
+  selector:
+    matchLabels:
+      app: gitops-api
+  template:
+    metadata:
+      labels:
+        app: gitops-api
+    spec:
+      containers:
+        - name: api
+          image: kubernetes-gitops-lab:v2 # Docker image
+          imagePullPolicy: IfNotPresent # 노드에 이미지가 있으면 재사용
+          ports:
+            - containerPort: 8000
+          env:
+            - name: APP_ENV # DEV 환경과 구분용
+              value: "deploy"
+            - name: APP_VERSION
+              value: "v2"
+          readinessProbe: # 요청을 받을 준비가 되었는지 확인하기 위한 Probe
+            httpGet:
+              path: /health/ready
+              port: 8000
+            initialDelaySeconds: 2
+            periodSeconds: 5
+          livenessProbe: # 애플리케이션이 살아있는지 확인하기위한 Probe
+            httpGet:
+              path: /health/live
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10

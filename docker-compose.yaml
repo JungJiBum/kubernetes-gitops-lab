@@ -1,0 +1,29 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    image: kubernetes-gitops-lab:dev
+    container_name: gitops-api-dev
+
+    ports:
+      - "8000:8000"
+
+    volumes:
+      - ./app:/app/app
+
+    environment:
+      APP_ENV: dev
+      APP_VERSION: v1
+
+    command:
+      - uvicorn
+      - app.main:app
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8000"
+      - --reload
+
+    restart: unless-stopped
