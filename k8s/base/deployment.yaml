@@ -21,11 +21,14 @@ spec:
           imagePullPolicy: Always # 노드에 이미지가 있으면 재사용
           ports:
             - containerPort: 8000
-          env:
-            - name: APP_ENV # DEV 환경과 구분용
-              value: "deploy"
-            - name: APP_VERSION
-              value: "v4"
+          envFrom:
+            - configMapRef:
+                name: gitops-api-config
+          # env:
+          #   - name: APP_ENV # DEV 환경과 구분용
+          #     value: "deploy"
+          #   - name: APP_VERSION
+          #     value: "v4"
           readinessProbe: # 요청을 받을 준비가 되었는지 확인하기 위한 Probe
             httpGet:
               path: /health/ready
