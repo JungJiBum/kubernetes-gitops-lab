@@ -12,7 +12,7 @@ replicas:
 
 images:
   - name: ghcr.io/jungjibum/kubernetes-gitops-lab
-    newTag: ba6268acadd54bc220de54c8db5e452288376c6f
+    newTag: ccdbc805f2a3a095ffd480aa9d152fb02f7804a7
 
 configMapGenerator:
   - name: gitops-api-config
