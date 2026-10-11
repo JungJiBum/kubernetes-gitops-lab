@@ -10,6 +10,10 @@ replicas:
   - name: gitops-api
     count: 1
 
+images:
+  - name: ghcr.io/jungjibum/kubernetes-gitops-lab
+    newTag: 0eaf6d61ef4fb9910bf77d5cc639cb9714241f24
+
 configMapGenerator:
   - name: gitops-api-config
     literals:
