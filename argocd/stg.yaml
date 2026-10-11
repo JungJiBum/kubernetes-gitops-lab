@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitops-stg
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/JungJiBum/kubernetes-gitops-lab.git
+    targetRevision: main
+    path: k8s/overlays/stg
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: gitops-stg
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
