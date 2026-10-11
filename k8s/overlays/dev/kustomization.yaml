@@ -14,4 +14,4 @@ configMapGenerator:
   - name: gitops-api-config
     literals:
       - APP_ENV=dev
-      - APP_VERSION=v4
+      - APP_VERSION=v5
