@@ -15,3 +15,6 @@ configMapGenerator:
     literals:
       - APP_ENV=prod
       - APP_VERSION=v4
+images:
+  - name: ghcr.io/jungjibum/kubernetes-gitops-lab
+    newTag: ba6268acadd54bc220de54c8db5e452288376c6f
